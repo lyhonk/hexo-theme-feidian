@@ -1,0 +1,40 @@
+<% 
+  var a=""
+    if (post.content){
+      a = post.content;
+    }
+    img=/\<img\s.*?\s?src\s*=\s*['|"]?([^\s'"]+).*?\>/ig;
+    result=a.match(img);
+    result = img.exec(post.content);
+    var s = "";
+     if(result != null) {
+        for(var i = result.length -1; i; --i){
+            s += result[i]+"\n";
+        }
+      }
+if(s.length > 0){
+    if(config.post_asset_folder){
+        var pattern = /^[\\{0,1}\/{0,1}]([^\/^\\]+)/,
+              pattern_ = /([^\/^\\]+)/;
+        if((ret = pattern.exec(s)) != null) {
+            if(ret[0].length == s.length)
+              s = config.root + post.path + ret[1];
+          }  else if ((ret = pattern_.exec(s)) != null) {
+               if(ret[0].length == s.length){
+                s = config.root + post.path + ret[1];
+               }
+          }
+    }
+}
+
+ %>
+<%if(s){%>
+<%
+s=s.replace(/\ +/g,"");
+s=s.replace(/[ ]/g,"");
+s=s.replace(/[\r\n]/g,"");
+;%>
+<meta class="swiftype" name="image" data-type="enum" content="<%=s%>" />
+<%}else{%>
+<meta class="swiftype" name="image" data-type="enum" content="<%=config.url+theme.avatar%>" />
+<%}%>
