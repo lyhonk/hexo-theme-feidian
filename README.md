@@ -36,7 +36,7 @@ feidian是基于litten制作主题[hexo-theme-yilia](http://litten.github.io/201
 ## 安装
 
 ``` bash
-$ git clone https://github.com/lyhonk/feidain.git themes/feidian
+$ git clone https://github.com/lyhonk/hexo-theme-feidian.git themes/feidian
 ```
 
 ## 配置
